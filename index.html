@@ -1,56 +1,143 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mount Everest Information</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mount Everest Info — Visit & Tips</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Welcome to Mount Everest</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#facts">Facts</a></li>
-        <li><a href="#visit">Visit</a></li>
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="logo">Mount Everest</h1>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#facts">Facts</a></li>
+          <li><a href="#visit">Visit</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="controls">
+        <button id="themeToggle" aria-pressed="false" title="Toggle dark mode">🌙</button>
+        <button id="tipsBtn">Climbing Tips</button>
+      </div>
+    </div>
+
+    <div class="hero">
+      <img
+        src="everest-banner.jpg"
+        alt="Panoramic view of Mount Everest"
+        loading="lazy"
+        class="hero-img"
+      />
+      <div class="hero-caption">
+        <h2>Explore Mount Everest — facts, visiting tips & safety</h2>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section id="about">
+    <section id="about" class="card">
       <h2>About Mount Everest</h2>
       <p>
-        Mount Everest is the highest mountain in the world, standing at 8,849 meters (29,032 feet) above sea level. 
-        Located in the Himalayas on the border of Nepal and Tibet, it attracts climbers and adventurers from across the globe.
+        Mount Everest (Chomolungma) is the world's highest mountain at about
+        8,849 m above sea level. It sits on the Nepal–Tibet border and draws
+        climbers and trekkers from across the world. The Everest Base Camp
+        trek offers a non-technical route for many visitors.
       </p>
+      <p>
+        Best trekking seasons: <strong>Spring (Apr–May)</strong> and
+        <strong>Autumn (Sep–Nov)</strong>.
+      </p>
+      <div class="subscribe">
+        <label for="subscribeEmail">Get expedition news (simulated):</label>
+        <div class="subscribe-row">
+          <input id="subscribeEmail" type="email" placeholder="you@example.com" />
+          <button id="subscribeBtn">Subscribe</button>
+        </div>
+        <p id="subscribeMsg" class="muted"></p>
+      </div>
     </section>
 
-    <section id="facts">
+    <section id="facts" class="card">
       <h2>Quick Facts</h2>
       <ul>
-        <li>Height: 8,849 m (29,032 ft)</li>
+        <li id="heightFact">Height: 8,849 m (29,032 ft)</li>
         <li>Location: Nepal–Tibet border</li>
-        <li>First Ascent: 1953 by Sir Edmund Hillary & Tenzing Norgay</li>
+        <li>First ascent: 1953 — Sir Edmund Hillary & Tenzing Norgay</li>
       </ul>
-      <button id="factBtn">Show Random Fact</button>
-      <p id="randomFact"></p>
+
+      <div class="facts-widget">
+        <button id="factBtn" aria-controls="randomFact">Show Random Fact</button>
+        <button id="autoFactsBtn" aria-pressed="false">Auto-rotate Facts</button>
+        <p id="randomFact" tabindex="0" class="random-fact" aria-live="polite"></p>
+      </div>
     </section>
 
-    <section id="visit">
+    <section id="visit" class="card">
       <h2>Planning a Visit</h2>
       <p>
-        Visitors often explore the Everest Base Camp trek, a challenging yet rewarding journey through the Himalayas. 
-        Spring (April–May) and Autumn (September–November) are the best times for trekking.
+        If you plan to trek to Everest Base Camp, allow extra days for
+        acclimatisation and always hire licensed guides and porters. Altitude
+        sickness is the main risk — ascend slowly and hydrate well.
       </p>
+
+      <div class="visit-actions">
+        <button id="routeBtn">View Suggested Route</button>
+        <button id="mapBtn">Open Map (external)</button>
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <form id="contactForm" novalidate>
+        <label>
+          Name
+          <input name="name" id="name" required minlength="2" />
+        </label>
+
+        <label>
+          Email
+          <input name="email" id="email" type="email" required />
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" id="message" required minlength="10"></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit">Send Message</button>
+          <button type="reset">Reset</button>
+        </div>
+        <p id="formMsg" class="muted" role="status"></p>
+      </form>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Everest Info Site</p>
+  <footer class="site-footer">
+    <small>&copy; 2025 Everest Info — Demo</small>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Modal: Climbing Tips -->
+  <div id="tipsModal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="tipsTitle">
+    <div class="modal-content">
+      <button class="close" id="closeModal" aria-label="Close tips">✕</button>
+      <h3 id="tipsTitle">Climbing & Trekking Tips</h3>
+      <ul>
+        <li>Hire experienced guides and check permits.</li>
+        <li>Acclimatise: ascend slowly and include rest days.</li>
+        <li>Carry warm layers, a sleeping bag rated for -20°C, and oxygen plan above 8000m.</li>
+        <li>Respect local regulations and wildlife; pack out all trash.</li>
+      </ul>
+      <p class="muted">This is informational only — not professional mountain guidance.</p>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
